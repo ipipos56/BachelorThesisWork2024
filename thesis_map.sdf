@@ -1,0 +1,197 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="default">
+    <!-- Lighting -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Ground Plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <model name="opponent_robot">
+    <static>false</static>
+    <pose>2.5 0 0.15 0 0 0</pose> <!-- Initial position -->
+    <link name="body">
+        <collision name="collision">
+        <geometry>
+            <box>
+            <size>0.3 0.3 0.3</size>
+            </box>
+        </geometry>
+        </collision>
+        <visual name="visual">
+        <geometry>
+            <box>
+            <size>0.3 0.3 0.3</size>
+            </box>
+        </geometry>
+        </visual>
+    </link>
+    </model>
+
+    <!-- Bottom Border -->
+    <model name="bottom_border">
+      <static>true</static>
+      <pose>1.5 1.5 0.005 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4 0.02 0.03</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4 0.02 0.03</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Top Border -->
+    <model name="top_border">
+      <static>true</static>
+      <pose>1.5 -1.5 0.005 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4 0.02 0.03</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4 0.02 0.03</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Left Border -->
+    <model name="left_border">
+      <static>true</static>
+      <pose>-0.5 0 0.005 0 0 1.5707</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3 0.02 0.03</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3 0.02 0.03</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Right Border -->
+    <model name="right_border">
+      <static>true</static>
+      <pose>3.5 0 0.005 0 0 1.5707</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3 0.02 0.03</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3 0.02 0.03</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Cylinder Right Top -->
+    <model name="cylinder_right_top">
+      <static>true</static>
+      <pose>4 1.3 0.3 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Cylinder Right Bottom -->
+    <model name="cylinder_right_bottom">
+      <static>true</static>
+      <pose>4 -1.3 0.3 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+
+    <!-- Cylinder Left Middle -->
+    <model name="cylinder_left_middle">
+      <static>true</static>
+      <pose>-1 0 0.3 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
