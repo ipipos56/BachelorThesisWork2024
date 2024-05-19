@@ -21,7 +21,7 @@ latest_scan = None
 global_x = 0
 global_y = 0
 global_z = 0
-yaw = None
+yaw = 0
 
 
 wall_y_min = -1
@@ -83,10 +83,12 @@ def is_collision(x_new, y_new, box_x, box_y, box_size):
     return False
 
 def generate_random_move(current_x, current_y, box_x, box_y, box_size, step_size=1.2):
+    global yaw
     """Generate a random move avoiding collisions."""
     angle = random.uniform(0, 2 * math.pi)  # Random angle
-    x_change = step_size * math.cos(angle)
-    y_change = step_size * math.sin(angle)
+    adjusted_angle = angle + yaw  # Adjust by global yaw
+    x_change = step_size * math.cos(adjusted_angle)
+    y_change = step_size * math.sin(adjusted_angle)
     x_new = current_x + x_change
     y_new = current_y + y_change
 
@@ -155,7 +157,8 @@ def plot_and_save_clusters(x_coords, y_coords, beacon_coords, another_robot_coor
         # plt.scatter(x_coords[mask], y_coords[mask], cmap='viridis', marker='.', s=3, label=labels[i])
     plt.scatter(x_coords, y_coords, c=labels, cmap='viridis', marker='.', s=3, label='Lidar data')
     plt.scatter(beacon_coords[:, 0], beacon_coords[:, 1], color='red', marker='o', s=25,label='Beacons')
-    plt.scatter(another_robot_coordinates[:, 0], another_robot_coordinates[:, 1], color='green', marker='x', s=25,label='Another Robot')
+    plt.scatter(another_robot_coordinates[:, 0], another_robot_coordinates[:, 1], color='green', marker='x', s=25,label='Obstacle')
+    plt.scatter(0,0, color='black', marker='v', s=25,label='My Robot')
     plt.title('Object Positions from Lidar Data')
     plt.xlabel('X Coordinates(m)')
     plt.ylabel('Y Coordinates(m)')
@@ -302,7 +305,7 @@ def listener():
             current_x, current_y = get_current_coordinate()
             new_x = new_y = 0
             while new_y == 0 and new_x == 0:
-                new_x, new_y = generate_random_move(current_x, current_y, another_robot_x, another_robot_y, 0.3)
+                new_x, new_y = generate_random_move(current_x, current_y, another_robot_x, another_robot_y, 0.5)
             v1, v2, v3 = calculate_wheel_speeds(new_x, new_y)
             move_robot(publ, pubb, pubr, v1, v2, v3, speed, 3)
             
